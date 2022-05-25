@@ -3,6 +3,7 @@ package view;
 import model.Product;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class ProductViewImpl implements ProductView {
@@ -11,8 +12,8 @@ public class ProductViewImpl implements ProductView {
     public ProductViewImpl() {
         products = new ArrayList<>();
         products.add(new Product(1, "Apple", 1234));
-        products.add(new Product(1, "Orange", 1657));
-        products.add(new Product(1, "Apple", 12123));
+        products.add(new Product(3, "Orange", 1657));
+        products.add(new Product(5, "Apple", 12123));
     }
 
     public ProductViewImpl(List<Product> products) {
@@ -40,18 +41,20 @@ public class ProductViewImpl implements ProductView {
                 index = i;
             }
         }
-        return -1;
+        return index;
     }
 
     @Override
     public Product findById(int id) {
-        for (Product product:products) {
-            if (id == product.getId()){
-                System.out.println(product);
-            }
+        for (Product product:products
+             ) {
+            if (id==product.getId()){
+                return product;
             }
 
         }
+        return null;
+    }
 
     @Override
     public List<Product> findByName(String name) {
@@ -60,11 +63,14 @@ public class ProductViewImpl implements ProductView {
 
     @Override
     public void update(int id, Product product) {
-
+        int indexOf = this.findIndexById(id);
+        this.products.set(indexOf, product);
     }
 
     @Override
     public void delete(int id) {
+        int indexOf = this.findIndexById(id);
+        this.products.remove(indexOf);
 
     }
 }

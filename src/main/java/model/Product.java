@@ -3,7 +3,7 @@ package model;
 public class Product {
     private int id ;
     private String name;
-    public float price;
+    private float price;
 
     public Product() {
     }

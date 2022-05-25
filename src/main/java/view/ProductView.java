@@ -5,6 +5,8 @@ import model.Product;
 import java.util.List;
 
 public interface ProductView {
+
+
     List<Product> findAll();                           //In ra list
 
     void save(Product product);                       //Lưu sp
